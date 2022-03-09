@@ -31,16 +31,59 @@ public class FXMLController {
 
     @FXML
     private Button btnReset;
-
+    
+    @FXML
+    private Button btnCancella;
+    @FXML
+    private TextArea txtVelocita;
+    
     @FXML
     void doInsert(ActionEvent event) {
     	// TODO
+    	long start,end;
+    	start=System.nanoTime();
+    	elenco.addParola(txtParola.getText());
+    	txtResult.setText(elenco.getElenco().toString());
+    	txtParola.clear();
+   
+		end=System.nanoTime();
+		
+		txtVelocita.setText(""+(end-start)/(1e9)); 
+		
+		
+
+    	
+    	
+    	
     }
 
     @FXML
     void doReset(ActionEvent event) {
-    	// TODO
+    	
+    	long start,end;
+    	start=System.nanoTime();
+    	elenco.reset();
+    	txtResult.clear();
+    	
+    	end=System.nanoTime();
+    	txtVelocita.setText(""+(end-start)/(1e9)); 
     }
+    
+    @FXML
+    void hundleButton(ActionEvent event) {
+    	long start,end;
+    	start=System.nanoTime();
+    	
+    	elenco.cancella(txtParola.getText());
+    	txtParola.clear();
+    	txtResult.setText(elenco.getElenco().toString());
+
+    	
+    	end=System.nanoTime();
+    	txtVelocita.setText(""+(end-start)/(1e9)); 
+    }
+    
+    
 
     @FXML
     void initialize() {
